@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WagSure - Shop</title>
+
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+
+    <ul>
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+
+        <li>
+            <a href="reservation.html">Reservation</a>
+        </li>
+
+        <li>
+            <a href="shop.html" class="active">Shop</a>
+        </li>
+    </ul>
+
+
+    <!-- SHOP -->
+
+    <div class="shop">
+
+        <h1><u>WagSure Shop</u></h1>
+
+        <h2>Products for happy dogs 🐶</h2>
+
+
+        <!-- PRODUCTS -->
+
+        <div class="products">
+
+
+            <!-- PRODUCT 1 -->
+
+            <div class="product">
+
+                <h2>WagSure Dog Leash</h2>
+
+                <p>
+                    A strong and comfortable leash
+                    for your dog.
+                </p>
+
+                <h3>
+                    1830 JMD
+                </h3>
+
+                <button onclick="addToCart('WagSure Dog Leash', 1830)">
+                    Add to cart
+                </button>
+
+            </div>
+
+
+            <!-- PRODUCT 2 -->
+
+            <div class="product">
+
+                <h2>WagSure Dog Toy</h2>
+
+                <p>
+                    A fun toy for your dog
+                    to play with.
+                </p>
+
+                <h3>
+                    1200 JMD
+                </h3>
+
+                <button onclick="addToCart('WagSure Dog Toy', 1200)">
+                    Add to cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- CART -->
+
+        <div class="cart">
+
+            <h2>🛒 Your Cart</h2>
+
+            <div id="cart-items">
+
+                <p>
+                    Your cart is empty.
+                </p>
+
+            </div>
+
+
+            <h2>
+                Total:
+                <span id="total">0</span>
+                JMD
+            </h2>
+
+
+            <!-- CUSTOMER INFORMATION -->
+
+            <h2>Order information</h2>
+
+            <input
+                type="text"
+                id="customer-name"
+                placeholder="Your name"
+            >
+
+            <input
+                type="text"
+                id="customer-contact"
+                placeholder="Your phone or email"
+            >
+
+
+            <br><br>
+
+
+            <button
+                onclick="sendOrder()"
+                class="order-button"
+            >
+                Send my order
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        let cart = [];
+
+
+        /* ADD PRODUCT */
+
+        function addToCart(name, price) {
+
+            cart.push({
+                name: name,
+                price: price
+            });
+
+            displayCart();
+        }
+
+
+        /* DISPLAY CART */
+
+        function displayCart() {
+
+            const cartItems =
+                document.getElementById("cart-items");
+
+            const totalElement =
+                document.getElementById("total");
+
+
+            cartItems.innerHTML = "";
+
+
+            if (cart.length === 0) {
+
+                cartItems.innerHTML =
+                    "<p>Your cart is empty.</p>";
+
+                totalElement.textContent = "0";
+
+                return;
+            }
+
+
+            let total = 0;
+
+
+            cart.forEach(function(item, index) {
+
+                total += item.price;
+
+
+                const itemElement =
+                    document.createElement("p");
+
+
+                itemElement.innerHTML =
+                    item.name +
+                    " - " +
+                    item.price +
+                    " JMD " +
+
+                    "<button onclick='removeFromCart(" +
+                    index +
+                    ")'>" +
+
+                    "Remove" +
+
+                    "</button>";
+
+
+                cartItems.appendChild(itemElement);
+
+            });
+
+
+            totalElement.textContent = total;
+        }
+
+
+        /* REMOVE PRODUCT */
+
+        function removeFromCart(index) {
+
+            cart.splice(index, 1);
+
+            displayCart();
+        }
+
+
+        /* SEND ORDER */
+
+        function sendOrder() {
+
+            const name =
+                document.getElementById("customer-name").value;
+
+            const contact =
+                document.getElementById("customer-contact").value;
+
+
+            if (cart.length === 0) {
+
+                alert("Your cart is empty!");
+
+                return;
+            }
+
+
+            if (name === "" || contact === "") {
+
+                alert(
+                    "Please enter your name and contact information."
+                );
+
+                return;
+            }
+
+
+            let message =
+                "Hello WagSure! I would like to order:%0A%0A";
+
+
+            let total = 0;
+
+
+            cart.forEach(function(item) {
+
+                message +=
+                    "- " +
+                    item.name +
+                    " : " +
+                    item.price +
+                    " JMD%0A";
+
+                total += item.price;
+
+            });
+
+
+            message +=
+                "%0ATotal: " +
+                total +
+                " JMD";
+
+
+            message +=
+                "%0A%0AMy name: " +
+                encodeURIComponent(name);
+
+
+            message +=
+                "%0AMy contact: " +
+                encodeURIComponent(contact);
+
+
+            /*
+            CHANGE THIS NUMBER
+            TO YOUR WAGSURE NUMBER
+            */
+
+            window.open(
+                "https://wa.me/66953566190?text=" +
+                message,
+                "_blank"
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>
