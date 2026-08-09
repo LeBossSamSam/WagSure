@@ -1,0 +1,359 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: black;
+    font-family: Arial, sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #0c0321;
+}
+
+ul li {
+    flex: 1;
+}
+
+ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+ul li a:hover {
+    background-color: #22ce28;
+}
+
+ul li a.active {
+    border: 2px solid white;
+}
+
+h1 {
+    font-family: Tiems New Roman;
+    color: rgb(0, 0, 0);
+    margin: 10px;
+    font-size: 35px;
+}
+
+h2 {
+    color: rgb(0, 0, 0);
+    margin: 5px;
+    font-size: 25px;
+}
+
+.logo {
+    position: absolute;
+    right: 100px;
+    bottom: 50px;
+    width: 400px;
+    height: auto;
+}
+
+.shedules {
+    position: absolute;
+    left: 50px;
+    bottom: 50px;
+    width: 600px;
+    height: auto;
+}
+
+.prices {
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    width: 600px;
+    height: auto;
+}
+
+.chien-noir {
+    position: absolute;
+    left: 25px;
+    bottom: 100px;
+    width: 400px;
+    height: auto;
+}
+
+.qrcode {
+    position: absolute;
+    left: 500px;
+    bottom: 45px;
+    width: 400px;
+    height: auto;
+}
+
+@media screen and (max-width: 600px) {
+
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* MENU */
+    ul {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul li {
+        width: 100%;
+    }
+
+    ul li a {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    /* TEXTES */
+    h1 {
+        font-size: 28px;
+        margin: 12px;
+    }
+
+    h2 {
+        font-size: 19px;
+        margin: 12px;
+        line-height: 1.4;
+    }
+
+    p {
+        font-size: 16px;
+        margin: 12px;
+    }
+
+    /* TOUTES LES IMAGES */
+    img {
+        position: static !important;
+        display: block;
+        width: auto !important;
+        max-width: 90% !important;
+        height: auto !important;
+        margin: 20px auto !important;
+    }
+
+    /* LOGO */
+    .logo {
+        position: static !important;
+        width: 180px !important;
+        max-width: 70% !important;
+        height: auto !important;
+        margin: 30px auto !important;
+    }
+
+    /* SHEDULES */
+    .shedules {
+        position: static !important;
+        width: 95% !important;
+        max-width: 95% !important;
+        height: auto !important;
+        margin: 25px auto !important;
+    }
+
+    /* PRICES */
+    .prices {
+        position: static !important;
+        width: 95% !important;
+        max-width: 95% !important;
+        height: auto !important;
+        margin: 25px auto !important;
+    }
+}
+
+/* ========================= */
+/* WAGSURE SHOP              */
+/* ========================= */
+
+.shop {
+    text-align: center;
+    padding: 20px;
+}
+
+
+/* PRODUCTS */
+
+.products {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+
+.product {
+    width: 280px;
+    padding: 20px;
+
+    border: 2px solid #123b5d;
+    border-radius: 15px;
+
+    background-color: #f5f5f5;
+}
+
+
+.product h2 {
+    color: #123b5d;
+}
+
+
+.product h3 {
+    color: #18815b;
+    font-size: 22px;
+}
+
+
+/* BUTTONS */
+
+.product button,
+.order-button {
+
+    background-color: #123b5d;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+
+.product button:hover,
+.order-button:hover {
+
+    background-color: #18815b;
+}
+
+
+/* CART */
+
+.cart {
+
+    max-width: 600px;
+
+    margin: 40px auto;
+
+    padding: 25px;
+
+    border: 2px solid #18815b;
+
+    border-radius: 15px;
+
+    background-color: #f5f5f5;
+}
+
+
+.cart h2 {
+    color: #123b5d;
+}
+
+
+/* INPUTS */
+
+.cart input {
+
+    width: 90%;
+
+    padding: 12px;
+
+    margin: 8px;
+
+    border: 1px solid #999;
+
+    border-radius: 8px;
+
+    font-size: 16px;
+}
+
+
+/* REMOVE BUTTON */
+
+.cart p button {
+
+    margin-left: 10px;
+
+    background-color: #9b2c2c;
+
+    color: white;
+
+    border: none;
+
+    padding: 5px 10px;
+
+    border-radius: 5px;
+
+}
+
+
+/* ========================= */
+/* PHONE                     */
+/* ========================= */
+
+@media (max-width: 600px) {
+
+    .shop {
+        padding: 10px;
+    }
+
+
+    .products {
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 20px;
+    }
+
+
+    .product {
+
+        width: 85%;
+
+        max-width: 350px;
+    }
+
+
+    .cart {
+
+        width: 85%;
+
+        padding: 15px;
+    }
+
+
+    .cart input {
+
+        width: 85%;
+    }
+
+
+    .product button,
+    .order-button {
+
+        width: 90%;
+
+        padding: 14px;
+
+        font-size: 17px;
+    }
+
+}
