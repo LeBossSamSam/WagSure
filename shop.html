@@ -39,16 +39,11 @@
             -webkit-user-drag: none;
         }
 
-        /* ZONE DU SWIPE */
-
         .product-image-container {
             touch-action: pan-y;
         }
 
-
-        /* =====================================
-           POINTS INDICATEURS
-           ===================================== */
+        /* POINTS INDICATEURS */
 
         .image-dots {
             display: flex;
@@ -69,7 +64,6 @@
         .image-dot.active {
             background-color: #000000;
         }
-
 
         .product h2 {
             color: #123b5d;
@@ -264,12 +258,12 @@
 
             <span
                 id="leftDot"
-                class="image-dot"
+                class="image-dot active"
             ></span>
 
             <span
                 id="rightDot"
-                class="image-dot active"
+                class="image-dot"
             ></span>
 
         </div>
@@ -830,33 +824,33 @@
     let touchEndX = 0;
 
 
-    /* =========================================
-       METTRE À JOUR LES POINTS
-       ========================================= */
+    /* METTRE À JOUR LES POINTS */
 
     function updateDots(isBack) {
 
         if (isBack) {
 
-            /* ARRIÈRE :
-               gauche = noir
-               droite = gris
-            */
-
-            leftDot.classList.add("active");
-
-            rightDot.classList.remove("active");
-
-        } else {
-
-            /* AVANT :
-               gauche = gris
-               droite = noir
-            */
+            /*
+             * ARRIÈRE :
+             * gauche = gris
+             * droite = noir
+             */
 
             leftDot.classList.remove("active");
 
             rightDot.classList.add("active");
+
+        } else {
+
+            /*
+             * AVANT :
+             * gauche = noir
+             * droite = gris
+             */
+
+            leftDot.classList.add("active");
+
+            rightDot.classList.remove("active");
 
         }
 
