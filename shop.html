@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -35,6 +36,10 @@
             border-radius: 10px;
             margin: 10px auto 20px;
             display: block;
+
+            /* AJOUT POUR LE SWIPE */
+            user-select: none;
+            -webkit-user-drag: none;
         }
 
         .product h2 {
@@ -93,11 +98,10 @@
 
 
         /* =====================================
-           AJOUT POUR LE SWIPE DU T-SHIRT
+           AJOUT : ZONE DU SWIPE
            ===================================== */
 
         .product-image-container {
-            overflow: hidden;
             touch-action: pan-y;
         }
 
@@ -108,7 +112,9 @@
 
 <body>
 
+
     <section class="shop">
+
 
         <h1>WagSure Shop</h1>
 
@@ -116,13 +122,21 @@
         <div class="product">
 
 
-            <!-- AJOUT : CONTENEUR POUR LE SWIPE -->
+            <!--
+                AJOUT : on met simplement
+                l'image dans une zone permettant
+                de détecter le swipe.
+            -->
 
-            <div class="product-image-container"
-                 id="productImageContainer">
+            <div
+                class="product-image-container"
+                id="productImageContainer">
 
 
-                <!-- TON IMAGE ORIGINALE -->
+                <!--
+                    TON IMAGE ACTUELLE
+                    image.png = AVANT
+                -->
 
                 <img
                     id="productImage"
@@ -130,7 +144,14 @@
                     src="image.png"
                     alt="WagSure T-Shirt">
 
+
             </div>
+
+
+            <!--
+                LE RESTE DE TON SHOP
+                RESTE ICI COMME AVANT
+            -->
 
 
             <h2>
@@ -164,27 +185,30 @@
 
 
             <button onclick="addToCart()">
-
                 Add to cart
-
             </button>
+
 
         </div>
 
 
         <div class="cart">
 
+
             <h2>
                 Your Cart
             </h2>
+
 
             <p id="cartText">
                 Your cart is empty.
             </p>
 
+
             <p id="total">
                 Total: €0.00
             </p>
+
 
             <button
                 class="order-button"
@@ -194,7 +218,9 @@
 
             </button>
 
+
         </div>
+
 
     </section>
 
@@ -203,7 +229,7 @@
 
 
         /* =====================================
-           TON CODE DU SHOP
+           TON CODE EXISTANT
            ===================================== */
 
         let cartQuantity = 0;
@@ -230,7 +256,6 @@
                 );
 
                 return;
-
             }
 
 
@@ -259,7 +284,6 @@
                     "Total: €0.00";
 
                 return;
-
             }
 
 
@@ -284,7 +308,6 @@
                 );
 
                 return;
-
             }
 
 
@@ -299,11 +322,15 @@
 
 
         /* =====================================
-           AJOUT : SWIPE ENTRE LES 2 PHOTOS
+           AJOUT UNIQUEMENT POUR LE SWIPE
            ===================================== */
 
+
         const productImage =
-            document.getElementById("productImage");
+            document.getElementById(
+                "productImage"
+            );
+
 
         const productImageContainer =
             document.getElementById(
@@ -313,38 +340,44 @@
 
         let startX = 0;
 
+
         let endX = 0;
 
+
+        /* Début du doigt sur l'image */
 
         productImageContainer.addEventListener(
             "touchstart",
             function(event) {
 
                 startX =
-                    event.touches[0].clientX;
+                    event.changedTouches[0].screenX;
 
             },
             { passive: true }
         );
 
 
+        /* Fin du doigt sur l'image */
+
         productImageContainer.addEventListener(
             "touchend",
             function(event) {
 
                 endX =
-                    event.changedTouches[0].clientX;
+                    event.changedTouches[0].screenX;
 
-                const distance =
+
+                const difference =
                     startX - endX;
 
 
                 /*
-                 * Swipe droite → gauche
-                 * = arrière du T-shirt
-                 */
+                    DROITE → GAUCHE
+                    = arrière du T-shirt
+                */
 
-                if (distance > 50) {
+                if (difference > 50) {
 
                     productImage.src =
                         "arriere-t-shirt.png";
@@ -353,11 +386,11 @@
 
 
                 /*
-                 * Swipe gauche → droite
-                 * = avant du T-shirt
-                 */
+                    GAUCHE → DROITE
+                    = avant du T-shirt
+                */
 
-                else if (distance < -50) {
+                else if (difference < -50) {
 
                     productImage.src =
                         "image.png";
@@ -368,7 +401,9 @@
             { passive: true }
         );
 
+
     </script>
+
 
 </body>
 
