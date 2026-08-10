@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -37,9 +36,15 @@
             margin: 10px auto 20px;
             display: block;
 
-            /* AJOUT POUR LE SWIPE */
+            /* AJOUT : empêche le navigateur de déplacer l'image */
             user-select: none;
             -webkit-user-drag: none;
+        }
+
+        /* AJOUT : zone où le swipe fonctionne */
+
+        .product-image-container {
+            touch-action: pan-y;
         }
 
         .product h2 {
@@ -96,13 +101,69 @@
             color: #123b5d;
         }
 
+        .cart input,
+        .cart select {
 
-        /* =====================================
-           AJOUT : ZONE DU SWIPE
-           ===================================== */
+            width: 90%;
+            padding: 12px;
+            margin: 8px;
+            border: 1px solid #999;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
 
-        .product-image-container {
-            touch-action: pan-y;
+        }
+
+        .address-title {
+            color: #123b5d;
+            margin-top: 30px;
+        }
+
+        .total {
+            font-size: 22px;
+            font-weight: bold;
+            color: #18815b;
+        }
+
+        .remove-button {
+
+            background-color: #9b2c2c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+
+        }
+
+        @media (max-width: 600px) {
+
+            .shop {
+                padding: 10px;
+            }
+
+            .product {
+                width: 85%;
+                padding: 20px;
+            }
+
+            .cart {
+                width: 85%;
+                padding: 15px;
+            }
+
+            .product-image {
+                max-width: 100%;
+            }
+
+            .product button,
+            .order-button {
+                width: 90%;
+                padding: 14px;
+                font-size: 17px;
+            }
+
         }
 
     </style>
@@ -113,296 +174,672 @@
 <body>
 
 
-    <section class="shop">
+<!-- NAVIGATION -->
+
+<ul>
+
+    <li>
+        <a href="index.html">
+            Home
+        </a>
+    </li>
+
+    <li>
+        <a href="reservation.html">
+            Reservation
+        </a>
+    </li>
+
+    <li>
+        <a href="shop.html" class="active">
+            Shop
+        </a>
+    </li>
+
+</ul>
 
 
-        <h1>WagSure Shop</h1>
+<!-- SHOP -->
+
+<div class="shop">
+
+    <h1>
+        <u>WagSure Shop</u>
+    </h1>
+
+    <h2>
+        Products for happy dogs 🐶
+    </h2>
 
 
-        <div class="product">
+    <!-- PRODUCT -->
+
+    <div class="product">
 
 
-            <!--
-                AJOUT : on met simplement
-                l'image dans une zone permettant
-                de détecter le swipe.
-            -->
+        <!-- AJOUT : CONTENEUR POUR LE SWIPE -->
 
-            <div
-                class="product-image-container"
-                id="productImageContainer">
+        <div
+            class="product-image-container"
+            id="productImageContainer"
+        >
 
-
-                <!--
-                    TON IMAGE ACTUELLE
-                    image.png = AVANT
-                -->
-
-                <img
-                    id="productImage"
-                    class="product-image"
-                    src="image.png"
-                    alt="WagSure T-Shirt">
-
-
-            </div>
-
-
-            <!--
-                LE RESTE DE TON SHOP
-                RESTE ICI COMME AVANT
-            -->
-
-
-            <h2>
-                WagSure T-Shirt
-            </h2>
-
-
-            <p>
-                Official WagSure T-Shirt.
-            </p>
-
-
-            <p class="price">
-                €19.99
-            </p>
-
-
-            <div class="quantity">
-
-                <label for="quantity">
-                    Quantity:
-                </label>
-
-                <input
-                    type="number"
-                    id="quantity"
-                    value="1"
-                    min="1">
-
-            </div>
-
-
-            <button onclick="addToCart()">
-                Add to cart
-            </button>
-
+            <img
+                id="productImage"
+                src="image.png"
+                alt="WagSure T-Shirt"
+                class="product-image"
+            >
 
         </div>
 
 
-        <div class="cart">
+        <h2>
+            WagSure T-Shirt
+        </h2>
+
+        <p>
+            Show your love for WagSure with our
+            official WagSure T-Shirt.
+        </p>
+
+        <p class="price">
+            €19.99
+        </p>
 
 
-            <h2>
-                Your Cart
-            </h2>
+        <div class="quantity">
+
+            <label for="quantity">
+                Quantity:
+            </label>
+
+            <input
+                type="number"
+                id="quantity"
+                value="1"
+                min="1"
+                max="20"
+                onchange="updateCart()"
+            >
+
+        </div>
 
 
-            <p id="cartText">
+        <button onclick="addToCart()">
+            🛒 Add to cart
+        </button>
+
+    </div>
+
+
+    <!-- CART -->
+
+    <div class="cart">
+
+        <h2>
+            🛒 Your Cart
+        </h2>
+
+
+        <div id="cart-items">
+
+            <p>
                 Your cart is empty.
             </p>
 
-
-            <p id="total">
-                Total: €0.00
-            </p>
-
-
-            <button
-                class="order-button"
-                onclick="order()">
-
-                Order
-
-            </button>
-
-
         </div>
 
 
-    </section>
+        <p class="total">
+
+            Total:
+            <span id="total">
+                €0.00
+            </span>
+
+        </p>
 
 
-    <script>
+        <!-- CUSTOMER INFORMATION -->
+
+        <h2>
+            Order information
+        </h2>
 
 
-        /* =====================================
-           TON CODE EXISTANT
-           ===================================== */
-
-        let cartQuantity = 0;
-
-        const price = 19.99;
+        <input
+            type="text"
+            id="customer-name"
+            placeholder="Full name"
+        >
 
 
-        function addToCart() {
-
-            const quantityInput =
-                document.getElementById("quantity");
-
-            const quantity =
-                parseInt(quantityInput.value);
+        <input
+            type="text"
+            id="customer-contact"
+            placeholder="Phone number or email"
+        >
 
 
-            if (
-                quantity < 1 ||
-                isNaN(quantity)
-            ) {
+        <!-- ADDRESS -->
 
-                alert(
-                    "Please enter a valid quantity."
-                );
-
-                return;
-            }
+        <h2 class="address-title">
+            📍 Delivery address
+        </h2>
 
 
-            cartQuantity += quantity;
+        <input
+            type="text"
+            id="address"
+            placeholder="Address line 1"
+        >
 
-            updateCart();
+
+        <input
+            type="text"
+            id="address2"
+            placeholder="Address line 2 (optional)"
+        >
+
+
+        <input
+            type="text"
+            id="city"
+            placeholder="City"
+        >
+
+
+        <input
+            type="text"
+            id="postal"
+            placeholder="Postal / ZIP code"
+        >
+
+
+        <select id="country">
+
+            <option value="">
+                Select your country
+            </option>
+
+            <option value="Jamaica">
+                Jamaica
+            </option>
+
+            <option value="United States">
+                United States
+            </option>
+
+            <option value="France">
+                France
+            </option>
+
+            <option value="United Kingdom">
+                United Kingdom
+            </option>
+
+            <option value="Canada">
+                Canada
+            </option>
+
+            <option value="Other">
+                Other
+            </option>
+
+        </select>
+
+
+        <br><br>
+
+
+        <button
+            onclick="sendOrder()"
+            class="order-button"
+        >
+            💬 Send my order
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+
+    let cart = [];
+
+
+    const productName =
+        "WagSure T-Shirt";
+
+
+    const productPrice =
+        19.99;
+
+
+    /* ADD TO CART */
+
+    function addToCart() {
+
+        const quantity =
+            parseInt(
+                document.getElementById("quantity").value
+            );
+
+
+        if (quantity < 1) {
+
+            alert("Please choose a valid quantity.");
+
+            return;
 
         }
 
 
-        function updateCart() {
+        cart = [];
 
-            const cartText =
-                document.getElementById("cartText");
+        for (
+            let i = 0;
+            i < quantity;
+            i++
+        ) {
 
-            const total =
-                document.getElementById("total");
+            cart.push({
 
+                name: productName,
+                price: productPrice
 
-            if (cartQuantity === 0) {
-
-                cartText.innerText =
-                    "Your cart is empty.";
-
-                total.innerText =
-                    "Total: €0.00";
-
-                return;
-            }
-
-
-            cartText.innerText =
-                "WagSure T-Shirt × " +
-                cartQuantity;
-
-
-            total.innerText =
-                "Total: €" +
-                (cartQuantity * price).toFixed(2);
+            });
 
         }
 
 
-        function order() {
+        displayCart();
 
-            if (cartQuantity === 0) {
+    }
 
-                alert(
-                    "Your cart is empty."
-                );
 
-                return;
-            }
+    /* UPDATE CART */
 
+    function updateCart() {
+
+        if (cart.length > 0) {
+
+            addToCart();
+
+        }
+
+    }
+
+
+    /* DISPLAY CART */
+
+    function displayCart() {
+
+        const cartItems =
+            document.getElementById("cart-items");
+
+
+        const totalElement =
+            document.getElementById("total");
+
+
+        cartItems.innerHTML = "";
+
+
+        if (cart.length === 0) {
+
+            cartItems.innerHTML =
+                "<p>Your cart is empty.</p>";
+
+            totalElement.textContent =
+                "€0.00";
+
+            return;
+
+        }
+
+
+        const quantity =
+            cart.length;
+
+
+        const total =
+            quantity * productPrice;
+
+
+        cartItems.innerHTML =
+
+            "<p>" +
+
+            productName +
+
+            " × " +
+
+            quantity +
+
+            " — €" +
+
+            total.toFixed(2) +
+
+            " " +
+
+            "<button " +
+
+            "class='remove-button' " +
+
+            "onclick='removeFromCart()'>" +
+
+            "Remove" +
+
+            "</button>" +
+
+            "</p>";
+
+
+        totalElement.textContent =
+            "€" + total.toFixed(2);
+
+    }
+
+
+    /* REMOVE */
+
+    function removeFromCart() {
+
+        cart = [];
+
+        document.getElementById("quantity").value = 1;
+
+        displayCart();
+
+    }
+
+
+    /* SEND ORDER */
+
+    function sendOrder() {
+
+
+        if (cart.length === 0) {
 
             alert(
-                "Thank you for your order! " +
-                "You ordered " +
-                cartQuantity +
-                " WagSure T-Shirt(s)."
+                "Your cart is empty!"
             );
+
+            return;
 
         }
 
 
-        /* =====================================
-           AJOUT UNIQUEMENT POUR LE SWIPE
-           ===================================== */
+        const name =
+            document
+            .getElementById("customer-name")
+            .value
+            .trim();
 
 
-        const productImage =
-            document.getElementById(
-                "productImage"
+        const contact =
+            document
+            .getElementById("customer-contact")
+            .value
+            .trim();
+
+
+        const address =
+            document
+            .getElementById("address")
+            .value
+            .trim();
+
+
+        const address2 =
+            document
+            .getElementById("address2")
+            .value
+            .trim();
+
+
+        const city =
+            document
+            .getElementById("city")
+            .value
+            .trim();
+
+
+        const postal =
+            document
+            .getElementById("postal")
+            .value
+            .trim();
+
+
+        const country =
+            document
+            .getElementById("country")
+            .value;
+
+
+        /* CHECK INFORMATION */
+
+        if (
+            name === "" ||
+            contact === "" ||
+            address === "" ||
+            city === "" ||
+            postal === "" ||
+            country === ""
+        ) {
+
+            alert(
+                "Please fill in all required information."
             );
 
+            return;
 
-        const productImageContainer =
-            document.getElementById(
-                "productImageContainer"
-            );
+        }
 
 
-        let startX = 0;
+        const quantity =
+            cart.length;
 
 
-        let endX = 0;
+        const total =
+            quantity * productPrice;
 
 
-        /* Début du doigt sur l'image */
+        /* WHATSAPP MESSAGE */
 
-        productImageContainer.addEventListener(
-            "touchstart",
-            function(event) {
+        let message =
+            "Hello WagSure! 👋\n\n";
 
-                startX =
-                    event.changedTouches[0].screenX;
 
-            },
-            { passive: true }
+        message +=
+            "🛍️ NEW ORDER\n\n";
+
+
+        message +=
+            "Product: " +
+            productName +
+            "\n";
+
+
+        message +=
+            "Quantity: " +
+            quantity +
+            "\n";
+
+
+        message +=
+            "Price: €" +
+            productPrice.toFixed(2) +
+            "\n";
+
+
+        message +=
+            "TOTAL: €" +
+            total.toFixed(2) +
+            "\n\n";
+
+
+        message +=
+            "👤 CUSTOMER\n";
+
+
+        message +=
+            "Name: " +
+            name +
+            "\n";
+
+
+        message +=
+            "Contact: " +
+            contact +
+            "\n\n";
+
+
+        message +=
+            "📍 DELIVERY ADDRESS\n";
+
+
+        message +=
+            "Address: " +
+            address +
+            "\n";
+
+
+        if (address2 !== "") {
+
+            message +=
+                "Address 2: " +
+                address2 +
+                "\n";
+
+        }
+
+
+        message +=
+            "City: " +
+            city +
+            "\n";
+
+
+        message +=
+            "Postal / ZIP: " +
+            postal +
+            "\n";
+
+
+        message +=
+            "Country: " +
+            country;
+
+
+        /* WHATSAPP */
+
+        const whatsappNumber =
+            "66953566190";
+
+
+        const whatsappURL =
+            "https://wa.me/" +
+            whatsappNumber +
+            "?text=" +
+            encodeURIComponent(message);
+
+
+        window.open(
+            whatsappURL,
+            "_blank"
+        );
+
+    }
+
+
+    /* =========================================
+       SWIPE ENTRE AVANT ET ARRIÈRE DU T-SHIRT
+       ========================================= */
+
+
+    const productImage =
+        document.getElementById("productImage");
+
+
+    const productImageContainer =
+        document.getElementById(
+            "productImageContainer"
         );
 
 
-        /* Fin du doigt sur l'image */
-
-        productImageContainer.addEventListener(
-            "touchend",
-            function(event) {
-
-                endX =
-                    event.changedTouches[0].screenX;
+    let touchStartX = 0;
 
 
-                const difference =
-                    startX - endX;
+    let touchEndX = 0;
 
 
-                /*
-                    DROITE → GAUCHE
-                    = arrière du T-shirt
-                */
+    /* DÉBUT DU SWIPE */
 
-                if (difference > 50) {
+    productImageContainer.addEventListener(
+        "touchstart",
+        function(event) {
 
-                    productImage.src =
-                        "arriere-t-shirt.png";
+            touchStartX =
+                event.changedTouches[0].screenX;
 
-                }
-
-
-                /*
-                    GAUCHE → DROITE
-                    = avant du T-shirt
-                */
-
-                else if (difference < -50) {
-
-                    productImage.src =
-                        "image.png";
-
-                }
-
-            },
-            { passive: true }
-        );
+        },
+        { passive: true }
+    );
 
 
-    </script>
+    /* FIN DU SWIPE */
+
+    productImageContainer.addEventListener(
+        "touchend",
+        function(event) {
+
+            touchEndX =
+                event.changedTouches[0].screenX;
+
+
+            const swipeDistance =
+                touchStartX - touchEndX;
+
+
+            /*
+             * DROITE → GAUCHE
+             * Affiche l'arrière
+             */
+
+            if (swipeDistance > 50) {
+
+                productImage.src =
+                    "arriere-t-shirt.png";
+
+            }
+
+
+            /*
+             * GAUCHE → DROITE
+             * Revient à l'avant
+             */
+
+            else if (swipeDistance < -50) {
+
+                productImage.src =
+                    "image.png";
+
+            }
+
+        },
+        { passive: true }
+    );
+
+
+</script>
 
 
 </body>
