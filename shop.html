@@ -28,63 +28,13 @@
             background-color: #f5f5f5;
         }
 
-        /* IMAGE DU T-SHIRT */
-
-        .product-gallery {
-            position: relative;
-            width: 100%;
-            max-width: 350px;
-            margin: 10px auto 20px;
-            overflow: hidden;
-            border-radius: 10px;
-            touch-action: pan-y;
-        }
-
         .product-image {
             width: 100%;
+            max-width: 350px;
             height: auto;
-            display: block;
             border-radius: 10px;
-            user-select: none;
-            -webkit-user-drag: none;
-        }
-
-        /* BOUTONS POUR CHANGER DE PHOTO */
-
-        .gallery-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-
-            width: 40px;
-            height: 40px;
-
-            border: none;
-            border-radius: 50%;
-
-            background-color: rgba(18, 59, 93, 0.85);
-            color: white;
-
-            font-size: 25px;
-            cursor: pointer;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            z-index: 5;
-        }
-
-        .gallery-button:hover {
-            background-color: #18815b;
-        }
-
-        .gallery-left {
-            left: 10px;
-        }
-
-        .gallery-right {
-            right: 10px;
+            margin: 10px auto 20px;
+            display: block;
         }
 
         .product h2 {
@@ -110,6 +60,7 @@
 
         .product button,
         .order-button {
+
             background-color: #123b5d;
             color: white;
             border: none;
@@ -117,6 +68,7 @@
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
+
         }
 
         .product button:hover,
@@ -125,16 +77,28 @@
         }
 
         .cart {
+
             max-width: 600px;
             margin: 40px auto;
             padding: 25px;
             border: 2px solid #18815b;
             border-radius: 15px;
             background-color: #f5f5f5;
+
         }
 
         .cart h2 {
             color: #123b5d;
+        }
+
+
+        /* =====================================
+           AJOUT POUR LE SWIPE DU T-SHIRT
+           ===================================== */
+
+        .product-image-container {
+            overflow: hidden;
+            touch-action: pan-y;
         }
 
     </style>
@@ -149,29 +113,16 @@
         <h1>WagSure Shop</h1>
 
 
-        <!-- PRODUIT -->
-
         <div class="product">
 
 
-            <!-- GALERIE DU T-SHIRT -->
+            <!-- AJOUT : CONTENEUR POUR LE SWIPE -->
 
-            <div class="product-gallery"
-                 id="productGallery">
-
-
-                <!-- BOUTON GAUCHE -->
-
-                <button
-                    class="gallery-button gallery-left"
-                    onclick="previousImage()">
-
-                    ‹
-
-                </button>
+            <div class="product-image-container"
+                 id="productImageContainer">
 
 
-                <!-- IMAGE -->
+                <!-- TON IMAGE ORIGINALE -->
 
                 <img
                     id="productImage"
@@ -179,42 +130,23 @@
                     src="image.png"
                     alt="WagSure T-Shirt">
 
-
-                <!-- BOUTON DROITE -->
-
-                <button
-                    class="gallery-button gallery-right"
-                    onclick="nextImage()">
-
-                    ›
-
-                </button>
-
             </div>
 
-
-            <!-- NOM DU PRODUIT -->
 
             <h2>
                 WagSure T-Shirt
             </h2>
 
 
-            <!-- DESCRIPTION -->
-
             <p>
                 Official WagSure T-Shirt.
             </p>
 
 
-            <!-- PRIX -->
-
             <p class="price">
                 €19.99
             </p>
 
-
-            <!-- QUANTITÉ -->
 
             <div class="quantity">
 
@@ -231,8 +163,6 @@
             </div>
 
 
-            <!-- AJOUTER AU PANIER -->
-
             <button onclick="addToCart()">
 
                 Add to cart
@@ -242,24 +172,19 @@
         </div>
 
 
-        <!-- PANIER -->
-
         <div class="cart">
 
             <h2>
                 Your Cart
             </h2>
 
-
             <p id="cartText">
                 Your cart is empty.
             </p>
 
-
             <p id="total">
                 Total: €0.00
             </p>
-
 
             <button
                 class="order-button"
@@ -277,147 +202,9 @@
     <script>
 
 
-        /* =========================================
-           PHOTOS DU T-SHIRT
-           ========================================= */
-
-        const images = [
-
-            "image.png",
-
-            "arriere-t-shirt.png"
-
-        ];
-
-
-        let currentImage = 0;
-
-
-        const productImage =
-            document.getElementById("productImage");
-
-
-        /* =========================================
-           AFFICHER UNE IMAGE
-           ========================================= */
-
-        function showImage(index) {
-
-            currentImage = index;
-
-            productImage.src =
-                images[currentImage];
-
-        }
-
-
-        /* =========================================
-           IMAGE SUIVANTE
-           ========================================= */
-
-        function nextImage() {
-
-            currentImage++;
-
-            if (currentImage >= images.length) {
-
-                currentImage = 0;
-
-            }
-
-            showImage(currentImage);
-
-        }
-
-
-        /* =========================================
-           IMAGE PRÉCÉDENTE
-           ========================================= */
-
-        function previousImage() {
-
-            currentImage--;
-
-            if (currentImage < 0) {
-
-                currentImage =
-                    images.length - 1;
-
-            }
-
-            showImage(currentImage);
-
-        }
-
-
-        /* =========================================
-           SWIPE SUR TÉLÉPHONE
-           ========================================= */
-
-        const gallery =
-            document.getElementById("productGallery");
-
-
-        let touchStartX = 0;
-
-        let touchEndX = 0;
-
-
-        gallery.addEventListener(
-            "touchstart",
-            function(event) {
-
-                touchStartX =
-                    event.changedTouches[0].screenX;
-
-            },
-            { passive: true }
-        );
-
-
-        gallery.addEventListener(
-            "touchend",
-            function(event) {
-
-                touchEndX =
-                    event.changedTouches[0].screenX;
-
-                handleSwipe();
-
-            },
-            { passive: true }
-        );
-
-
-        function handleSwipe() {
-
-            const swipeDistance =
-                touchStartX - touchEndX;
-
-
-            /* DROITE → GAUCHE */
-
-            if (swipeDistance > 50) {
-
-                nextImage();
-
-            }
-
-
-            /* GAUCHE → DROITE */
-
-            else if (swipeDistance < -50) {
-
-                previousImage();
-
-            }
-
-        }
-
-
-        /* =========================================
-           PANIER
-           ========================================= */
+        /* =====================================
+           TON CODE DU SHOP
+           ===================================== */
 
         let cartQuantity = 0;
 
@@ -428,7 +215,6 @@
 
             const quantityInput =
                 document.getElementById("quantity");
-
 
             const quantity =
                 parseInt(quantityInput.value);
@@ -455,15 +241,10 @@
         }
 
 
-        /* =========================================
-           METTRE À JOUR LE PANIER
-           ========================================= */
-
         function updateCart() {
 
             const cartText =
                 document.getElementById("cartText");
-
 
             const total =
                 document.getElementById("total");
@@ -489,15 +270,10 @@
 
             total.innerText =
                 "Total: €" +
-                (cartQuantity * price)
-                    .toFixed(2);
+                (cartQuantity * price).toFixed(2);
 
         }
 
-
-        /* =========================================
-           COMMANDER
-           ========================================= */
 
         function order() {
 
@@ -520,6 +296,77 @@
             );
 
         }
+
+
+        /* =====================================
+           AJOUT : SWIPE ENTRE LES 2 PHOTOS
+           ===================================== */
+
+        const productImage =
+            document.getElementById("productImage");
+
+        const productImageContainer =
+            document.getElementById(
+                "productImageContainer"
+            );
+
+
+        let startX = 0;
+
+        let endX = 0;
+
+
+        productImageContainer.addEventListener(
+            "touchstart",
+            function(event) {
+
+                startX =
+                    event.touches[0].clientX;
+
+            },
+            { passive: true }
+        );
+
+
+        productImageContainer.addEventListener(
+            "touchend",
+            function(event) {
+
+                endX =
+                    event.changedTouches[0].clientX;
+
+                const distance =
+                    startX - endX;
+
+
+                /*
+                 * Swipe droite → gauche
+                 * = arrière du T-shirt
+                 */
+
+                if (distance > 50) {
+
+                    productImage.src =
+                        "arriere-t-shirt.png";
+
+                }
+
+
+                /*
+                 * Swipe gauche → droite
+                 * = avant du T-shirt
+                 */
+
+                else if (distance < -50) {
+
+                    productImage.src =
+                        "image.png";
+
+                }
+
+            },
+            { passive: true }
+        );
 
     </script>
 
