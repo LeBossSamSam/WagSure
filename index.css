@@ -36,7 +36,7 @@ ul li a.active {
 }
 
 h1 {
-    font-family: Tiems New Roman;
+    font-family: "Times New Roman", serif;
     color: rgb(0, 0, 0);
     margin: 10px;
     font-size: 35px;
@@ -88,6 +88,11 @@ h2 {
     height: auto;
 }
 
+
+/* ========================= */
+/* MOBILE                    */
+/* ========================= */
+
 @media screen and (max-width: 600px) {
 
     body {
@@ -98,6 +103,7 @@ h2 {
     }
 
     /* MENU */
+
     ul {
         display: flex;
         flex-direction: column;
@@ -118,6 +124,7 @@ h2 {
     }
 
     /* TEXTES */
+
     h1 {
         font-size: 28px;
         margin: 12px;
@@ -135,6 +142,7 @@ h2 {
     }
 
     /* TOUTES LES IMAGES */
+
     img {
         position: static !important;
         display: block;
@@ -145,6 +153,7 @@ h2 {
     }
 
     /* LOGO */
+
     .logo {
         position: static !important;
         width: 180px !important;
@@ -154,6 +163,7 @@ h2 {
     }
 
     /* SHEDULES */
+
     .shedules {
         position: static !important;
         width: 95% !important;
@@ -163,6 +173,7 @@ h2 {
     }
 
     /* PRICES */
+
     .prices {
         position: static !important;
         width: 95% !important;
@@ -171,6 +182,7 @@ h2 {
         margin: 25px auto !important;
     }
 }
+
 
 /* ========================= */
 /* WAGSURE SHOP              */
@@ -192,22 +204,17 @@ h2 {
     margin-top: 30px;
 }
 
-
 .product {
     width: 280px;
     padding: 20px;
-
     border: 2px solid #123b5d;
     border-radius: 15px;
-
     background-color: #f5f5f5;
 }
-
 
 .product h2 {
     color: #123b5d;
 }
-
 
 .product h3 {
     color: #18815b;
@@ -215,96 +222,75 @@ h2 {
 }
 
 
-/* BUTTONS */
+/* ========================= */
+/* SHOP BUTTONS              */
+/* ========================= */
 
 .product button,
 .order-button {
-
     background-color: #123b5d;
-
     color: white;
-
     border: none;
-
     padding: 12px 20px;
-
     border-radius: 8px;
-
     font-size: 16px;
-
     cursor: pointer;
 }
 
-
 .product button:hover,
 .order-button:hover {
-
     background-color: #18815b;
 }
 
 
-/* CART */
+/* ========================= */
+/* CART                      */
+/* ========================= */
 
 .cart {
-
     max-width: 600px;
-
     margin: 40px auto;
-
     padding: 25px;
-
     border: 2px solid #18815b;
-
     border-radius: 15px;
-
     background-color: #f5f5f5;
 }
-
 
 .cart h2 {
     color: #123b5d;
 }
 
 
-/* INPUTS */
+/* ========================= */
+/* INPUTS                    */
+/* ========================= */
 
 .cart input {
-
     width: 90%;
-
     padding: 12px;
-
     margin: 8px;
-
     border: 1px solid #999;
-
     border-radius: 8px;
-
     font-size: 16px;
 }
 
 
-/* REMOVE BUTTON */
+/* ========================= */
+/* REMOVE BUTTON              */
+/* ========================= */
 
 .cart p button {
-
     margin-left: 10px;
-
     background-color: #9b2c2c;
-
     color: white;
-
     border: none;
-
     padding: 5px 10px;
-
     border-radius: 5px;
-
 }
 
 
 /* ========================= */
-/* PHONE                     */
+/* PHONE SHOP                */
 /* ========================= */
 
 @media (max-width: 600px) {
@@ -313,71 +299,135 @@ h2 {
         padding: 10px;
     }
 
-
     .products {
-
         flex-direction: column;
-
         align-items: center;
-
         gap: 20px;
     }
 
-
     .product {
-
         width: 85%;
-
         max-width: 350px;
     }
 
-
     .cart {
-
         width: 85%;
-
         padding: 15px;
     }
 
-
     .cart input {
-
         width: 85%;
     }
 
-
     .product button,
     .order-button {
-
         width: 90%;
-
         padding: 14px;
-
         font-size: 17px;
     }
-
 }
+
+
+/* ========================= */
+/* PREMIUM BOOK BUTTON       */
+/* ========================= */
 
 .book-button {
     display: inline-block;
     text-decoration: none;
-    margin: 15px 0;
+    margin: 18px 5px;
 }
 
 .book-button button {
-    background: linear-gradient(135deg, #0b2d4d, #18a558);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    min-width: 230px;
+
+    padding: 15px 30px;
+
+    background: linear-gradient(
+        135deg,
+        #0c0321 0%,
+        #123b5d 45%,
+        #18815b 100%
+    );
+
     color: white;
-    border: none;
-    padding: 14px 35px;
-    border-radius: 30px;
+
+    border: 2px solid #18815b;
+    border-radius: 50px;
+
+    font-family: Arial, sans-serif;
     font-size: 20px;
     font-weight: bold;
+
     cursor: pointer;
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
-    transition: 0.25s;
+
+    box-shadow:
+        0 6px 15px rgba(12, 3, 33, 0.35),
+        0 0 0 0 rgba(24, 129, 91, 0.4);
+
+    transition: all 0.3s ease;
 }
 
 .book-button button:hover {
-    transform: scale(1.07);
-    box-shadow: 0 7px 16px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px) scale(1.04);
+
+    background: linear-gradient(
+        135deg,
+        #123b5d 0%,
+        #18815b 60%,
+        #22ce28 100%
+    );
+
+    box-shadow:
+        0 10px 22px rgba(12, 3, 33, 0.4),
+        0 0 18px rgba(34, 206, 40, 0.35);
 }
+
+.book-button button:active {
+    transform: translateY(0) scale(0.97);
+}
+
+
+/* ========================= */
+/* WHATSAPP ICON             */
+/* ========================= */
+
+.whatsapp-icon {
+    width: 27px !important;
+    height: 27px !important;
+    max-width: 27px !important;
+    margin: 0 !important;
+    display: block;
+}
+
+
+/* ========================= */
+/* BOOK BUTTON - MOBILE      */
+/* ========================= */
+
+@media screen and (max-width: 600px) {
+
+    .book-button {
+        display: flex;
+        justify-content: center;
+        margin: 20px auto;
+    }
+
+    .book-button button {
+        min-width: 220px;
+        padding: 14px 25px;
+        font-size: 18px;
+    }
+
+    .whatsapp-icon {
+        width: 25px !important;
+        height: 25px !important;
+        max-width: 25px !important;
+        margin: 0 !important;
+    }
+        }
