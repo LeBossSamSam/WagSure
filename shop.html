@@ -35,17 +35,41 @@
             border-radius: 10px;
             margin: 10px auto 20px;
             display: block;
-
-            /* AJOUT : empêche le navigateur de déplacer l'image */
             user-select: none;
             -webkit-user-drag: none;
         }
 
-        /* AJOUT : zone où le swipe fonctionne */
+        /* ZONE DU SWIPE */
 
         .product-image-container {
             touch-action: pan-y;
         }
+
+
+        /* =====================================
+           POINTS INDICATEURS
+           ===================================== */
+
+        .image-dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+
+        .image-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #b5b5b5;
+        }
+
+        .image-dot.active {
+            background-color: #000000;
+        }
+
 
         .product h2 {
             color: #123b5d;
@@ -217,7 +241,7 @@
     <div class="product">
 
 
-        <!-- AJOUT : CONTENEUR POUR LE SWIPE -->
+        <!-- IMAGE DU T-SHIRT -->
 
         <div
             class="product-image-container"
@@ -230,6 +254,23 @@
                 alt="WagSure T-Shirt"
                 class="product-image"
             >
+
+        </div>
+
+
+        <!-- POINTS INDICATEURS -->
+
+        <div class="image-dots">
+
+            <span
+                id="leftDot"
+                class="image-dot"
+            ></span>
+
+            <span
+                id="rightDot"
+                class="image-dot active"
+            ></span>
 
         </div>
 
@@ -761,7 +802,7 @@
 
 
     /* =========================================
-       SWIPE ENTRE AVANT ET ARRIÈRE DU T-SHIRT
+       SWIPE ENTRE AVANT ET ARRIÈRE
        ========================================= */
 
 
@@ -775,10 +816,51 @@
         );
 
 
+    const leftDot =
+        document.getElementById("leftDot");
+
+
+    const rightDot =
+        document.getElementById("rightDot");
+
+
     let touchStartX = 0;
 
 
     let touchEndX = 0;
+
+
+    /* =========================================
+       METTRE À JOUR LES POINTS
+       ========================================= */
+
+    function updateDots(isBack) {
+
+        if (isBack) {
+
+            /* ARRIÈRE :
+               gauche = noir
+               droite = gris
+            */
+
+            leftDot.classList.add("active");
+
+            rightDot.classList.remove("active");
+
+        } else {
+
+            /* AVANT :
+               gauche = gris
+               droite = noir
+            */
+
+            leftDot.classList.remove("active");
+
+            rightDot.classList.add("active");
+
+        }
+
+    }
 
 
     /* DÉBUT DU SWIPE */
@@ -811,7 +893,7 @@
 
             /*
              * DROITE → GAUCHE
-             * Affiche l'arrière
+             * = ARRIÈRE
              */
 
             if (swipeDistance > 50) {
@@ -819,18 +901,22 @@
                 productImage.src =
                     "arriere-t-shirt.png";
 
+                updateDots(true);
+
             }
 
 
             /*
              * GAUCHE → DROITE
-             * Revient à l'avant
+             * = AVANT
              */
 
             else if (swipeDistance < -50) {
 
                 productImage.src =
                     "image.png";
+
+                updateDots(false);
 
             }
 
@@ -845,3 +931,4 @@
 </body>
 
 </html>
+
