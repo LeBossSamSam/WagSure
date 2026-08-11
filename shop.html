@@ -1,467 +1,436 @@
-```html
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <!-- LOGO / FAVICON -->
+```
+<!-- LOGO / FAVICON -->
 
-    <link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/png" href="favicon.png">
 
+<meta charset="UTF-8">
 
-    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<title>WagSure - Shop</title>
 
-    <title>WagSure - Shop</title>
+<link rel="stylesheet" href="index.css">
 
-    <link rel="stylesheet" href="index.css">
+<style>
 
-    <style>
+    .shop {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .product {
+        max-width: 400px;
+        margin: 30px auto;
+        padding: 25px;
+        border: 2px solid #123b5d;
+        border-radius: 15px;
+        background-color: #f5f5f5;
+    }
+
+    .product-image {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        border-radius: 10px;
+        margin: 10px auto 20px;
+        display: block;
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+
+    .product-image-container {
+        touch-action: pan-y;
+    }
+
+    /* POINTS INDICATEURS */
+
+    .image-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        margin-top: -10px;
+        margin-bottom: 15px;
+    }
+
+    .image-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #b5b5b5;
+        cursor: pointer;
+    }
+
+    .image-dot.active {
+        background-color: #000000;
+    }
+
+    .product h2 {
+        color: #123b5d;
+    }
+
+    .price {
+        color: #18815b;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .quantity {
+        margin: 15px;
+    }
+
+    .quantity input {
+        width: 60px;
+        padding: 10px;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .product button,
+    .order-button {
+        background-color: #123b5d;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .product button:hover,
+    .order-button:hover {
+        background-color: #18815b;
+    }
+
+    .cart {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 25px;
+        border: 2px solid #18815b;
+        border-radius: 15px;
+        background-color: #f5f5f5;
+    }
+
+    .cart h2 {
+        color: #123b5d;
+    }
+
+    .cart input,
+    .cart select {
+        width: 90%;
+        padding: 12px;
+        margin: 8px;
+        border: 1px solid #999;
+        border-radius: 8px;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+
+    .address-title {
+        color: #123b5d;
+        margin-top: 30px;
+    }
+
+    .total {
+        font-size: 22px;
+        font-weight: bold;
+        color: #18815b;
+    }
+
+    .remove-button {
+        background-color: #9b2c2c;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    @media (max-width: 600px) {
 
         .shop {
-            text-align: center;
-            padding: 20px;
+            padding: 10px;
         }
 
         .product {
-            max-width: 400px;
-            margin: 30px auto;
-            padding: 25px;
-            border: 2px solid #123b5d;
-            border-radius: 15px;
-            background-color: #f5f5f5;
+            width: 85%;
+            padding: 20px;
+        }
+
+        .cart {
+            width: 85%;
+            padding: 15px;
         }
 
         .product-image {
-            width: 100%;
-            max-width: 350px;
-            height: auto;
-            border-radius: 10px;
-            margin: 10px auto 20px;
-            display: block;
-            user-select: none;
-            -webkit-user-drag: none;
-        }
-
-        .product-image-container {
-            touch-action: pan-y;
-        }
-
-        /* POINTS INDICATEURS */
-
-        .image-dots {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 5px;
-            margin-top: -10px;
-            margin-bottom: 15px;
-        }
-
-        .image-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background-color: #b5b5b5;
-            cursor: pointer;
-        }
-
-        .image-dot.active {
-            background-color: #000000;
-        }
-
-        .product h2 {
-            color: #123b5d;
-        }
-
-        .price {
-            color: #18815b;
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .quantity {
-            margin: 15px;
-        }
-
-        .quantity input {
-            width: 60px;
-            padding: 10px;
-            text-align: center;
-            font-size: 16px;
+            max-width: 100%;
         }
 
         .product button,
         .order-button {
-
-            background-color: #123b5d;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-
-        }
-
-        .product button:hover,
-        .order-button:hover {
-            background-color: #18815b;
-        }
-
-        .cart {
-
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 25px;
-            border: 2px solid #18815b;
-            border-radius: 15px;
-            background-color: #f5f5f5;
-
-        }
-
-        .cart h2 {
-            color: #123b5d;
-        }
-
-        .cart input,
-        .cart select {
-
             width: 90%;
-            padding: 12px;
-            margin: 8px;
-            border: 1px solid #999;
-            border-radius: 8px;
-            font-size: 16px;
-            box-sizing: border-box;
-
+            padding: 14px;
+            font-size: 17px;
         }
 
-        .address-title {
-            color: #123b5d;
-            margin-top: 30px;
-        }
+    }
 
-        .total {
-            font-size: 22px;
-            font-weight: bold;
-            color: #18815b;
-        }
-
-        .remove-button {
-
-            background-color: #9b2c2c;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-left: 10px;
-
-        }
-
-        @media (max-width: 600px) {
-
-            .shop {
-                padding: 10px;
-            }
-
-            .product {
-                width: 85%;
-                padding: 20px;
-            }
-
-            .cart {
-                width: 85%;
-                padding: 15px;
-            }
-
-            .product-image {
-                max-width: 100%;
-            }
-
-            .product button,
-            .order-button {
-                width: 90%;
-                padding: 14px;
-                font-size: 17px;
-            }
-
-        }
-
-    </style>
+</style>
+```
 
 </head>
 
-
 <body>
-
 
 <!-- NAVIGATION -->
 
 <ul>
 
-    <li>
-        <a href="index.html">
-            Home
-        </a>
-    </li>
+```
+<li>
+    <a href="index.html">
+        Home
+    </a>
+</li>
 
-    <li>
-        <a href="reservation.html">
-            Reservation
-        </a>
-    </li>
+<li>
+    <a href="reservation.html">
+        Reservation
+    </a>
+</li>
 
-    <li>
-        <a href="shop.html" class="active">
-            Shop
-        </a>
-    </li>
+<li>
+    <a href="shop.html" class="active">
+        Shop
+    </a>
+</li>
+```
 
 </ul>
-
 
 <!-- SHOP -->
 
 <div class="shop">
 
-    <h1>
-        <u>WagSure Shop</u>
-    </h1>
+```
+<h1>
+    <u>WagSure Shop</u>
+</h1>
+
+<h2>
+    Products for happy dogs 🐶
+</h2>
+
+<!-- PRODUCT -->
+
+<div class="product">
+
+    <!-- IMAGE DU T-SHIRT -->
+
+    <div
+        class="product-image-container"
+        id="productImageContainer"
+    >
+
+        <img
+            id="productImage"
+            src="image.png"
+            alt="WagSure T-Shirt"
+            class="product-image"
+        >
+
+    </div>
+
+    <!-- POINTS INDICATEURS -->
+
+    <div class="image-dots">
+
+        <span
+            id="leftDot"
+            class="image-dot active"
+        ></span>
+
+        <span
+            id="rightDot"
+            class="image-dot"
+        ></span>
+
+    </div>
 
     <h2>
-        Products for happy dogs 🐶
+        WagSure T-Shirt
     </h2>
 
+    <p>
+        Show your love for WagSure with our
+        official WagSure T-Shirt.
+    </p>
 
-    <!-- PRODUCT -->
+    <p class="price">
+        €29.99
+    </p>
 
-    <div class="product">
+    <div class="quantity">
 
+        <label for="quantity">
+            Quantity:
+        </label>
 
-        <!-- IMAGE DU T-SHIRT -->
-
-        <div
-            class="product-image-container"
-            id="productImageContainer"
+        <input
+            type="number"
+            id="quantity"
+            value="1"
+            min="1"
+            max="20"
+            onchange="updateCart()"
         >
-
-            <img
-                id="productImage"
-                src="image.png"
-                alt="WagSure T-Shirt"
-                class="product-image"
-            >
-
-        </div>
-
-
-        <!-- POINTS INDICATEURS -->
-
-        <div class="image-dots">
-
-            <span
-                id="leftDot"
-                class="image-dot active"
-            ></span>
-
-            <span
-                id="rightDot"
-                class="image-dot"
-            ></span>
-
-        </div>
-
-
-        <h2>
-            WagSure T-Shirt
-        </h2>
-
-        <p>
-            Show your love for WagSure with our
-            official WagSure T-Shirt.
-        </p>
-
-        <p class="price">
-            €29.99
-        </p>
-
-
-        <div class="quantity">
-
-            <label for="quantity">
-                Quantity:
-            </label>
-
-            <input
-                type="number"
-                id="quantity"
-                value="1"
-                min="1"
-                max="20"
-                onchange="updateCart()"
-            >
-
-        </div>
-
-
-        <button onclick="addToCart()">
-            🛒 Add to cart
-        </button>
 
     </div>
 
-
-    <!-- CART -->
-
-    <div class="cart">
-
-        <h2>
-            🛒 Your Cart
-        </h2>
-
-
-        <div id="cart-items">
-
-            <p>
-                Your cart is empty.
-            </p>
-
-        </div>
-
-
-        <p class="total">
-
-            Total:
-            <span id="total">
-                €0.00
-            </span>
-
-        </p>
-
-
-        <!-- CUSTOMER INFORMATION -->
-
-        <h2>
-            Order information
-        </h2>
-
-
-        <input
-            type="text"
-            id="customer-name"
-            placeholder="Full name"
-        >
-
-
-        <input
-            type="text"
-            id="customer-contact"
-            placeholder="Phone number or email"
-        >
-
-
-        <!-- ADDRESS -->
-
-        <h2 class="address-title">
-            📍 Delivery address
-        </h2>
-
-
-        <input
-            type="text"
-            id="address"
-            placeholder="Address line 1"
-        >
-
-
-        <input
-            type="text"
-            id="address2"
-            placeholder="Address line 2 (optional)"
-        >
-
-
-        <input
-            type="text"
-            id="city"
-            placeholder="City"
-        >
-
-
-        <input
-            type="text"
-            id="postal"
-            placeholder="Postal / ZIP code"
-        >
-
-
-        <select id="country">
-
-            <option value="">
-                Select your country
-            </option>
-
-            <option value="Jamaica">
-                Jamaica
-            </option>
-
-            <option value="United States">
-                United States
-            </option>
-
-            <option value="France">
-                France
-            </option>
-
-            <option value="United Kingdom">
-                United Kingdom
-            </option>
-
-            <option value="Canada">
-                Canada
-            </option>
-
-            <option value="Other">
-                Other
-            </option>
-
-        </select>
-
-
-        <br><br>
-
-
-        <button
-            onclick="sendOrder()"
-            class="order-button"
-        >
-            💬 Send my order
-        </button>
-
-    </div>
+    <button onclick="addToCart()">
+        🛒 Add to cart
+    </button>
 
 </div>
 
+<!-- CART -->
+
+<div class="cart">
+
+    <h2>
+        🛒 Your Cart
+    </h2>
+
+    <div id="cart-items">
+
+        <p>
+            Your cart is empty.
+        </p>
+
+    </div>
+
+    <p class="total">
+
+        Total:
+        <span id="total">
+            €0.00
+        </span>
+
+    </p>
+
+    <!-- CUSTOMER INFORMATION -->
+
+    <h2>
+        Order information
+    </h2>
+
+    <input
+        type="text"
+        id="customer-name"
+        placeholder="Full name"
+    >
+
+    <input
+        type="text"
+        id="customer-contact"
+        placeholder="Phone number or email"
+    >
+
+    <!-- ADDRESS -->
+
+    <h2 class="address-title">
+        📍 Delivery address
+    </h2>
+
+    <input
+        type="text"
+        id="address"
+        placeholder="Address line 1"
+    >
+
+    <input
+        type="text"
+        id="address2"
+        placeholder="Address line 2 (optional)"
+    >
+
+    <input
+        type="text"
+        id="city"
+        placeholder="City"
+    >
+
+    <input
+        type="text"
+        id="postal"
+        placeholder="Postal / ZIP code"
+    >
+
+    <select id="country">
+
+        <option value="">
+            Select your country
+        </option>
+
+        <option value="Jamaica">
+            Jamaica
+        </option>
+
+        <option value="United States">
+            United States
+        </option>
+
+        <option value="France">
+            France
+        </option>
+
+        <option value="United Kingdom">
+            United Kingdom
+        </option>
+
+        <option value="Canada">
+            Canada
+        </option>
+
+        <option value="Other">
+            Other
+        </option>
+
+    </select>
+
+    <br><br>
+
+    <button
+        onclick="sendOrder()"
+        class="order-button"
+    >
+        💬 Send my order
+    </button>
+
+</div>
+```
+
+</div>
 
 <!-- JAVASCRIPT -->
 
 <script>
 
-
     let cart = [];
-
 
     const productName =
         "WagSure T-Shirt";
 
-
     const productPrice =
         29.99;
-
 
     /* ADD TO CART */
 
@@ -472,7 +441,6 @@
                 document.getElementById("quantity").value
             );
 
-
         if (quantity < 1) {
 
             alert("Please choose a valid quantity.");
@@ -480,7 +448,6 @@
             return;
 
         }
-
 
         cart = [];
 
@@ -499,11 +466,9 @@
 
         }
 
-
         displayCart();
 
     }
-
 
     /* UPDATE CART */
 
@@ -517,7 +482,6 @@
 
     }
 
-
     /* DISPLAY CART */
 
     function displayCart() {
@@ -525,13 +489,10 @@
         const cartItems =
             document.getElementById("cart-items");
 
-
         const totalElement =
             document.getElementById("total");
 
-
         cartItems.innerHTML = "";
-
 
         if (cart.length === 0) {
 
@@ -545,14 +506,11 @@
 
         }
 
-
         const quantity =
             cart.length;
 
-
         const total =
             quantity * productPrice;
-
 
         cartItems.innerHTML =
 
@@ -582,12 +540,10 @@
 
             "</p>";
 
-
         totalElement.textContent =
             "€" + total.toFixed(2);
 
     }
-
 
     /* REMOVE */
 
@@ -601,11 +557,9 @@
 
     }
 
-
     /* SEND ORDER */
 
     function sendOrder() {
-
 
         if (cart.length === 0) {
 
@@ -617,13 +571,11 @@
 
         }
 
-
         const name =
             document
             .getElementById("customer-name")
             .value
             .trim();
-
 
         const contact =
             document
@@ -631,13 +583,11 @@
             .value
             .trim();
 
-
         const address =
             document
             .getElementById("address")
             .value
             .trim();
-
 
         const address2 =
             document
@@ -645,13 +595,11 @@
             .value
             .trim();
 
-
         const city =
             document
             .getElementById("city")
             .value
             .trim();
-
 
         const postal =
             document
@@ -659,12 +607,10 @@
             .value
             .trim();
 
-
         const country =
             document
             .getElementById("country")
             .value;
-
 
         /* CHECK INFORMATION */
 
@@ -685,74 +631,60 @@
 
         }
 
-
         const quantity =
             cart.length;
 
-
         const total =
             quantity * productPrice;
-
 
         /* WHATSAPP MESSAGE */
 
         let message =
             "Hello WagSure! 👋\n\n";
 
-
         message +=
             "🛍️ NEW ORDER\n\n";
-
 
         message +=
             "Product: " +
             productName +
             "\n";
 
-
         message +=
             "Quantity: " +
             quantity +
             "\n";
-
 
         message +=
             "Price: €" +
             productPrice.toFixed(2) +
             "\n";
 
-
         message +=
             "TOTAL: €" +
             total.toFixed(2) +
             "\n\n";
 
-
         message +=
             "👤 CUSTOMER\n";
-
 
         message +=
             "Name: " +
             name +
             "\n";
 
-
         message +=
             "Contact: " +
             contact +
             "\n\n";
 
-
         message +=
             "📍 DELIVERY ADDRESS\n";
-
 
         message +=
             "Address: " +
             address +
             "\n";
-
 
         if (address2 !== "") {
 
@@ -763,36 +695,30 @@
 
         }
 
-
         message +=
             "City: " +
             city +
             "\n";
-
 
         message +=
             "Postal / ZIP: " +
             postal +
             "\n";
 
-
         message +=
             "Country: " +
             country;
-
 
         /* WHATSAPP */
 
         const whatsappNumber =
             "66953566190";
 
-
         const whatsappURL =
             "https://wa.me/" +
             whatsappNumber +
             "?text=" +
             encodeURIComponent(message);
-
 
         window.open(
             whatsappURL,
@@ -801,35 +727,27 @@
 
     }
 
-
     /* =========================================
        SWIPE ENTRE AVANT ET ARRIÈRE
        ========================================= */
 
-
     const productImage =
         document.getElementById("productImage");
-
 
     const productImageContainer =
         document.getElementById(
             "productImageContainer"
         );
 
-
     const leftDot =
         document.getElementById("leftDot");
-
 
     const rightDot =
         document.getElementById("rightDot");
 
-
     let touchStartX = 0;
 
-
     let touchEndX = 0;
-
 
     /* METTRE À JOUR LES POINTS */
 
@@ -863,7 +781,6 @@
 
     }
 
-
     /* CHANGER POUR L'AVANT */
 
     function showFront() {
@@ -875,7 +792,6 @@
 
     }
 
-
     /* CHANGER POUR L'ARRIÈRE */
 
     function showBack() {
@@ -886,7 +802,6 @@
         updateDots(true);
 
     }
-
 
     /* =========================================
        CLIC SUR LES POINTS
@@ -901,7 +816,6 @@
         }
     );
 
-
     rightDot.addEventListener(
         "click",
         function() {
@@ -910,7 +824,6 @@
 
         }
     );
-
 
     /* =========================================
        DÉBUT DU SWIPE
@@ -927,7 +840,6 @@
         { passive: true }
     );
 
-
     /* =========================================
        FIN DU SWIPE
        ========================================= */
@@ -939,10 +851,8 @@
             touchEndX =
                 event.changedTouches[0].screenX;
 
-
             const swipeDistance =
                 touchStartX - touchEndX;
-
 
             /*
              * DROITE → GAUCHE
@@ -954,7 +864,6 @@
                 showBack();
 
             }
-
 
             /*
              * GAUCHE → DROITE
@@ -971,11 +880,9 @@
         { passive: true }
     );
 
-
 </script>
-
 
 </body>
 
 </html>
-```
+
