@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WagSure Shop</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        header {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            color: #ddd;
+        }
+
+        .shop-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .products-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .product {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            width: 100%;
+            max-width: 470px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .product h2 {
+            margin-top: 10px;
+            margin-bottom: 8px;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 12px;
+            touch-action: pan-y;
+        }
+
+        .product-image {
+            width: 100%;
+            display: block;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+            margin-bottom: 15px;
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: #ccc;
+            transition: 0.2s;
+        }
+
+        .dot.active {
+            background: #111;
+        }
+
+        .quantity-label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .quantity {
+            width: 80px;
+            padding: 10px;
+            font-size: 16px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .add-button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: #111;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .add-button:hover {
+            background: #333;
+        }
+
+        .cart-section,
+        .customer-section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 35px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .cart-section h2,
+        .customer-section h2 {
+            margin-top: 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: bold;
+        }
+
+        .cart-item-price {
+            color: #555;
+            margin-top: 4px;
+        }
+
+        .remove-button {
+            border: none;
+            background: #e74c3c;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 23px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .whatsapp-button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #25D366;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .whatsapp-button:hover {
+            background: #1ebe5d;
+        }
+
+        .empty-cart {
+            color: #777;
+        }
+
+        @media (max-width: 700px) {
+            .shop-container {
+                margin: 25px auto;
+                padding: 0 12px;
+            }
+
+            .products-container {
+                gap: 20px;
+            }
+
+            .product {
+                max-width: 100%;
+            }
+
+            header h1 {
+                font-size: 27px;
+            }
+
+            .cart-item {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>WagSure Shop</h1>
+    <p>Official WagSure products</p>
+</header>
+
+<div class="shop-container">
+
+    <div class="products-container">
+
+        <!-- T-SHIRT -->
+        <div class="product">
+            <div class="image-container" id="tshirtImageContainer">
+                <img
+                    src="image.png"
+                    alt="WagSure T-Shirt"
+                    class="product-image"
+                    id="tshirtImage"
+                >
+            </div>
+
+            <div class="dots">
+                <div class="dot active" id="tshirtLeftDot"></div>
+                <div class="dot" id="tshirtRightDot"></div>
+            </div>
+
+            <h2>WagSure T-Shirt</h2>
+            <div class="price">€29.99</div>
+
+            <label class="quantity-label" for="tshirtQuantity">
+                Quantity
+            </label>
+
+            <input
+                type="number"
+                id="tshirtQuantity"
+                class="quantity"
+                min="1"
+                max="20"
+                value="1"
+            >
+
+            <button
+                class="add-button"
+                onclick="addToCart('tshirt')"
+            >
+                Add to Cart
+            </button>
+        </div>
+
+
+        <!-- CAP -->
+        <div class="product">
+            <div class="image-container" id="capImageContainer">
+                <img
+                    src="photocasquette.png"
+                    alt="WagSure Cap"
+                    class="product-image"
+                    id="capImage"
+                >
+            </div>
+
+            <div class="dots">
+                <div class="dot active" id="capLeftDot"></div>
+                <div class="dot" id="capRightDot"></div>
+            </div>
+
+            <h2>WagSure Cap</h2>
+            <div class="price">€39.99</div>
+
+            <label class="quantity-label" for="capQuantity">
+                Quantity
+            </label>
+
+            <input
+                type="number"
+                id="capQuantity"
+                class="quantity"
+                min="1"
+                max="20"
+                value="1"
+            >
+
+            <button
+                class="add-button"
+                onclick="addToCart('cap')"
+            >
+                Add to Cart
+            </button>
+        </div>
+
+    </div>
+
+
+    <!-- CART -->
+    <div class="cart-section">
+        <h2>Your Cart</h2>
+
+        <div id="cartItems">
+            <p class="empty-cart">Your cart is empty.</p>
+        </div>
+
+        <div class="total">
+            Total: €<span id="cartTotal">0.00</span>
+        </div>
+    </div>
+
+
+    <!-- CUSTOMER INFORMATION -->
+    <div class="customer-section">
+        <h2>Customer Information</h2>
+
+        <div class="form-group">
+            <label for="customerName">Full Name</label>
+            <input
+                type="text"
+                id="customerName"
+                placeholder="Your full name"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="customerContact">Phone / WhatsApp</label>
+            <input
+                type="text"
+                id="customerContact"
+                placeholder="Your phone number"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="address">Delivery Address</label>
+            <input
+                type="text"
+                id="address"
+                placeholder="Your delivery address"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="city">City</label>
+            <input
+                type="text"
+                id="city"
+                placeholder="Your city"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="country">Country</label>
+            <select id="country">
+                <option value="">Select your country</option>
+                <option value="Jamaica">Jamaica</option>
+                <option value="Belgium">Belgium</option>
+                <option value="France">France</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="United States">United States</option>
+                <option value="Canada">Canada</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <button class="whatsapp-button" onclick="sendOrder()">
+            Order via WhatsApp
+        </button>
+    </div>
+
+</div>
+
+
+<script>
+
+    const products = {
+        tshirt: {
+            name: "WagSure T-Shirt",
+            price: 29.99
+        },
+
+        cap: {
+            name: "WagSure Cap",
+            price: 39.99
+        }
+    };
+
+    let cart = [];
+
+
+    function addToCart(productId) {
+
+        const product = products[productId];
+
+        let quantityInput;
+
+        if (productId === "tshirt") {
+            quantityInput = document.getElementById("tshirtQuantity");
+        } else {
+            quantityInput = document.getElementById("capQuantity");
+        }
+
+        let quantity = parseInt(quantityInput.value);
+
+        if (isNaN(quantity) || quantity < 1) {
+            quantity = 1;
+        }
+
+        if (quantity > 20) {
+            quantity = 20;
+        }
+
+        const existingItem = cart.find(
+            item => item.id === productId
+        );
+
+        if (existingItem) {
+
+            existingItem.quantity += quantity;
+
+            if (existingItem.quantity > 20) {
+                existingItem.quantity = 20;
+            }
+
+        } else {
+
+            cart.push({
+                id: productId,
+                name: product.name,
+                price: product.price,
+                quantity: quantity
+            });
+
+        }
+
+        displayCart();
+    }
+
+
+    function removeFromCart(productId) {
+
+        cart = cart.filter(
+            item => item.id !== productId
+        );
+
+        displayCart();
+    }
+
+
+    function displayCart() {
+
+        const cartItems = document.getElementById("cartItems");
+        const cartTotal = document.getElementById("cartTotal");
+
+        cartItems.innerHTML = "";
+
+        if (cart.length === 0) {
+
+            cartItems.innerHTML =
+                '<p class="empty-cart">Your cart is empty.</p>';
+
+            cartTotal.textContent = "0.00";
+
+            return;
+        }
+
+        let total = 0;
+
+        cart.forEach(item => {
+
+            const itemTotal =
+                item.price * item.quantity;
+
+            total += itemTotal;
+
+            const cartItem = document.createElement("div");
+
+            cartItem.className = "cart-item";
+
+            cartItem.innerHTML = `
+                <div class="cart-item-info">
+                    <div class="cart-item-name">
+                        ${item.name}
+                    </div>
+
+                    <div class="cart-item-price">
+                        ${item.quantity} × €${item.price.toFixed(2)}
+                        = €${itemTotal.toFixed(2)}
+                    </div>
+                </div>
+
+                <button
+                    class="remove-button"
+                    onclick="removeFromCart('${item.id}')"
+                >
+                    Remove
+                </button>
+            `;
+
+            cartItems.appendChild(cartItem);
+        });
+
+        cartTotal.textContent =
+            total.toFixed(2);
+    }
+
+
+    function sendOrder() {
+
+        if (cart.length === 0) {
+            alert("Your cart is empty.");
+            return;
+        }
+
+        const customerName =
+            document.getElementById("customerName").value.trim();
+
+        const customerContact =
+            document.getElementById("customerContact").value.trim();
+
+        const address =
+            document.getElementById("address").value.trim();
+
+        const city =
+            document.getElementById("city").value.trim();
+
+        const country =
+            document.getElementById("country").value;
+
+
+        if (
+            !customerName ||
+            !customerContact ||
+            !address ||
+            !city ||
+            !country
+        ) {
+
+            alert(
+                "Please complete all customer information before ordering."
+            );
+
+            return;
+        }
+
+
+        let message =
+            "Hello WagSure! I would like to place an order.%0A%0A";
+
+        message += "ORDER:%0A";
+
+
+        let total = 0;
+
+
+        cart.forEach(item => {
+
+            const itemTotal =
+                item.price * item.quantity;
+
+            total += itemTotal;
+
+            message +=
+                "- " +
+                item.name +
+                " × " +
+                item.quantity +
+                " = €" +
+                itemTotal.toFixed(2) +
+                "%0A";
+        });
+
+
+        message +=
+            "%0ATotal: €" +
+            total.toFixed(2);
+
+
+        message +=
+            "%0A%0ACUSTOMER INFORMATION:%0A" +
+            "Name: " +
+            encodeURIComponent(customerName) +
+            "%0A" +
+            "Phone / WhatsApp: " +
+            encodeURIComponent(customerContact) +
+            "%0A" +
+            "Address: " +
+            encodeURIComponent(address) +
+            "%0A" +
+            "City: " +
+            encodeURIComponent(city) +
+            "%0A" +
+            "Country: " +
+            encodeURIComponent(country);
+
+
+        const whatsappNumber =
+            "66953566190";
+
+
+        const whatsappURL =
+            "https://wa.me/" +
+            whatsappNumber +
+            "?text=" +
+            message;
+
+
+        window.open(
+            whatsappURL,
+            "_blank"
+        );
+    }
+
+
+    function setupSwipe(
+        containerId,
+        imageId,
+        leftDotId,
+        rightDotId,
+        frontImage,
+        backImage
+    ) {
+
+        const container =
+            document.getElementById(containerId);
+
+        const image =
+            document.getElementById(imageId);
+
+        const leftDot =
+            document.getElementById(leftDotId);
+
+        const rightDot =
+            document.getElementById(rightDotId);
+
+
+        let startX = 0;
+        let currentSide = 0;
+
+
+        container.addEventListener(
+            "touchstart",
+            function(event) {
+
+                startX =
+                    event.touches[0].clientX;
+
+            },
+            { passive: true }
+        );
+
+
+        container.addEventListener(
+            "touchend",
+            function(event) {
+
+                const endX =
+                    event.changedTouches[0].clientX;
+
+                const difference =
+                    startX - endX;
+
+
+                if (Math.abs(difference) < 40) {
+                    return;
+                }
+
+
+                if (difference > 0) {
+
+                    currentSide = 1;
+
+                } else {
+
+                    currentSide = 0;
+                }
+
+
+                if (currentSide === 0) {
+
+                    image.src = frontImage;
+
+                    leftDot.classList.add("active");
+                    rightDot.classList.remove("active");
+
+                } else {
+
+                    image.src = backImage;
+
+                    leftDot.classList.remove("active");
+                    rightDot.classList.add("active");
+                }
+
+            },
+            { passive: true }
+        );
+
+
+        leftDot.addEventListener(
+            "click",
+            function() {
+
+                currentSide = 0;
+
+                image.src = frontImage;
+
+                leftDot.classList.add("active");
+                rightDot.classList.remove("active");
+            }
+        );
+
+
+        rightDot.addEventListener(
+            "click",
+            function() {
+
+                currentSide = 1;
+
+                image.src = backImage;
+
+                leftDot.classList.remove("active");
+                rightDot.classList.add("active");
+            }
+        );
+    }
+
+
+    setupSwipe(
+        "tshirtImageContainer",
+        "tshirtImage",
+        "tshirtLeftDot",
+        "tshirtRightDot",
+        "image.png",
+        "arriere-t-shirt.png"
+    );
+
+
+    setupSwipe(
+        "capImageContainer",
+        "capImage",
+        "capLeftDot",
+        "capRightDot",
+        "photocasquette.png",
+        "photocasquette.png"
+    );
+
+
+    displayCart();
+
+</script>
+
+</body>
+</html>
