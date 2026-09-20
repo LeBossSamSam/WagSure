@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WagSure - Dog Sitting</title>
+
+    <meta name="description"
+          content="WagSure dog sitting for dogs who need company and care while their owners are away.">
+
+    <link rel="stylesheet" href="index.css">
+
+    <link rel="icon"
+          type="image/png"
+          href="favicon.png">
+</head>
+
+<body>
+
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="reservation.html">Dog Walking</a></li>
+        <li><a href="dogsitting.html" class="active">Dog Sitting</a></li>
+        <li><a href="shop.html">Shop</a></li>
+    </ul>
+
+    <main class="sitting-page">
+
+        <header class="page-header">
+            <img src="logo+nom+slogan.png"
+                 class="page-logo"
+                 alt="WagSure - Trusted walks. Happy dogs.">
+
+            <h1>Dog Sitting</h1>
+
+            <p>
+                Someone to look after your dog while you're away.
+            </p>
+        </header>
+
+
+        <section class="sitting-hero">
+
+            <div class="sitting-hero-icon">🏠🐕</div>
+
+            <h2>Company, care &amp; attention at home</h2>
+
+            <p>
+                If you need to go out for the evening or be away for a few hours,
+                WagSure dog sitting gives your dog some company while you are away.
+            </p>
+
+            <p>
+                The service can include playing with your dog, keeping them company,
+                checking their water and following the normal instructions you provide.
+            </p>
+
+        </section>
+
+
+        <section class="sitting-info-grid">
+
+            <article class="info-card">
+                <div class="info-icon">🎾</div>
+                <h2>Play &amp; company</h2>
+                <p>
+                    Spend time with your dog and keep them comfortable while you are away.
+                </p>
+            </article>
+
+            <article class="info-card">
+                <div class="info-icon">💧</div>
+                <h2>Basic care</h2>
+                <p>
+                    Check water and follow the normal care instructions provided by the owner.
+                </p>
+            </article>
+
+            <article class="info-card">
+                <div class="info-icon">🏡</div>
+                <h2>At your home</h2>
+                <p>
+                    The idea is to stay with your dog in their familiar home environment.
+                </p>
+            </article>
+
+        </section>
+
+
+        <section class="approval-box">
+
+            <h2>Parent / Guardian Approval</h2>
+
+            <p>
+                Because WagSure is run by a young pet sitter, every dog-sitting
+                reservation is <strong>subject to parent/guardian approval</strong>.
+            </p>
+
+            <p>
+                This service is intended for shorter periods such as an evening
+                or a few hours. It is not presented as long-term professional boarding,
+                overnight professional care or veterinary care.
+            </p>
+
+        </section>
+
+
+        <section class="sitting-booking">
+
+            <h2>Request Dog Sitting</h2>
+
+            <p>
+                Complete the form below. Your request will be sent through WhatsApp
+                so the details can be discussed and parent/guardian approval can be confirmed.
+            </p>
+
+
+            <div class="sitting-form">
+
+                <div class="form-group">
+                    <label for="sittingName">Your Name</label>
+                    <input type="text"
+                           id="sittingName"
+                           placeholder="Your full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="guardianName">Parent / Guardian Name</label>
+                    <input type="text"
+                           id="guardianName"
+                           placeholder="Parent or guardian full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="guardianContact">Parent / Guardian Contact</label>
+                    <input type="text"
+                           id="guardianContact"
+                           placeholder="Parent or guardian phone / WhatsApp">
+                </div>
+
+                <div class="form-group">
+                    <label for="sittingDate">Preferred Date</label>
+                    <input type="date"
+                           id="sittingDate">
+                </div>
+
+                <div class="form-group">
+                    <label for="sittingTime">Preferred Time / Duration</label>
+                    <input type="text"
+                           id="sittingTime"
+                           placeholder="Example: 6:00 PM - 9:00 PM">
+                </div>
+
+                <div class="form-group">
+                    <label for="dogDetails">Dog Details</label>
+                    <textarea id="dogDetails"
+                              rows="4"
+                              placeholder="Dog's name, number of dogs and anything important to know"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="ownerInstructions">Normal Owner Instructions</label>
+                    <textarea id="ownerInstructions"
+                              rows="4"
+                              placeholder="Water, feeding instructions, play preferences, house rules, etc."></textarea>
+                </div>
+
+                <label class="approval-check">
+                    <input type="checkbox" id="guardianApproval">
+                    <span>
+                        I understand that the request is subject to parent/guardian approval.
+                    </span>
+                </label>
+
+                <button type="button"
+                        class="whatsapp-button"
+                        onclick="sendSittingRequest()">
+                    Send Dog Sitting Request on WhatsApp
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+        function sendSittingRequest() {
+
+            const name =
+                document.getElementById("sittingName").value.trim();
+
+            const guardianName =
+                document.getElementById("guardianName").value.trim();
+
+            const guardianContact =
+                document.getElementById("guardianContact").value.trim();
+
+            const date =
+                document.getElementById("sittingDate").value;
+
+            const time =
+                document.getElementById("sittingTime").value.trim();
+
+            const dogDetails =
+                document.getElementById("dogDetails").value.trim();
+
+            const instructions =
+                document.getElementById("ownerInstructions").value.trim();
+
+            const approval =
+                document.getElementById("guardianApproval").checked;
+
+
+            if (
+                !name ||
+                !guardianName ||
+                !guardianContact ||
+                !date ||
+                !time ||
+                !dogDetails
+            ) {
+                alert("Please complete the required information before sending your request.");
+                return;
+            }
+
+
+            if (!approval) {
+                alert("Parent / guardian approval must be confirmed before sending the request.");
+                return;
+            }
+
+
+            let message =
+                "Hello WagSure! I would like to request dog sitting.%0A%0A";
+
+            message +=
+                "DOG SITTING REQUEST:%0A" +
+                "Name: " +
+                encodeURIComponent(name) +
+                "%0A" +
+                "Parent / Guardian: " +
+                encodeURIComponent(guardianName) +
+                "%0A" +
+                "Parent / Guardian Contact: " +
+                encodeURIComponent(guardianContact) +
+                "%0A" +
+                "Preferred Date: " +
+                encodeURIComponent(date) +
+                "%0A" +
+                "Preferred Time / Duration: " +
+                encodeURIComponent(time) +
+                "%0A" +
+                "Dog Details: " +
+                encodeURIComponent(dogDetails);
+
+
+            if (instructions) {
+                message +=
+                    "%0A" +
+                    "Owner Instructions: " +
+                    encodeURIComponent(instructions);
+            }
+
+
+            message +=
+                "%0A%0AParent / Guardian approval acknowledged: YES";
+
+
+            const whatsappNumber = "66953566190";
+
+            const whatsappURL =
+                "https://wa.me/" +
+                whatsappNumber +
+                "?text=" +
+                message;
+
+
+            window.open(whatsappURL, "_blank");
+        }
+    </script>
+
+</body>
+</html>

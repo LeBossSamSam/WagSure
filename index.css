@@ -1,0 +1,793 @@
+/* =========================
+   WAGSURE GLOBAL
+   ========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: #0c0321;
+    font-family: Arial, sans-serif;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #0c0321;
+}
+
+ul li {
+    flex: 1;
+}
+
+ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 10px;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+ul li a:hover {
+    background-color: #22ce28;
+}
+
+ul li a.active {
+    border: 2px solid white;
+}
+
+h1 {
+    font-family: "Times New Roman", serif;
+    color: #0c0321;
+}
+
+h2 {
+    color: #0c0321;
+}
+
+
+/* =========================
+   HOME PAGE
+   ========================= */
+
+.home-page {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 35px 25px 60px;
+}
+
+.home-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.home-logo {
+    width: 330px;
+    max-width: 80%;
+    height: auto;
+    margin: 0 auto 10px;
+    display: block;
+}
+
+.home-header h1 {
+    margin: 10px 0 8px;
+    font-size: 42px;
+}
+
+.home-subtitle {
+    margin: 0 auto;
+    color: #123b5d;
+    font-size: 20px;
+}
+
+
+/* THREE SERVICE CARDS */
+
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin: 35px 0 55px;
+}
+
+.service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    padding: 35px 25px;
+    border-radius: 22px;
+    border: 2px solid #18815b;
+    text-align: center;
+    text-decoration: none;
+    color: #0c0321;
+    background: #f8fbf9;
+    box-shadow: 0 8px 25px rgba(12, 3, 33, 0.12);
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease,
+                background-color 0.25s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 14px 32px rgba(12, 3, 33, 0.18);
+    background-color: #ffffff;
+}
+
+.service-icon {
+    font-size: 58px;
+    line-height: 1;
+    margin-bottom: 18px;
+}
+
+.service-card h2 {
+    margin: 0 0 12px;
+    font-size: 27px;
+    color: #123b5d;
+}
+
+.service-card p {
+    margin: 0;
+    max-width: 290px;
+    min-height: 50px;
+    color: #333;
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.service-link {
+    margin-top: 25px;
+    color: #18815b;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.walking-card {
+    border-top: 7px solid #18815b;
+}
+
+.sitting-card {
+    border-top: 7px solid #123b5d;
+}
+
+.shop-card {
+    border-top: 7px solid #22ce28;
+}
+
+
+/* ABOUT */
+
+.about-section {
+    max-width: 900px;
+    margin: 0 auto 45px;
+    padding: 30px;
+    border-radius: 18px;
+    background: #f5f5f5;
+    border-left: 5px solid #18815b;
+}
+
+.about-section h2 {
+    margin-top: 0;
+    font-size: 30px;
+}
+
+.about-section p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #333;
+}
+
+
+/* QUICK BOOKING */
+
+.quick-booking {
+    max-width: 800px;
+    margin: 0 auto 45px;
+    padding: 35px 25px;
+    text-align: center;
+    border-radius: 20px;
+    background: #0c0321;
+    color: white;
+}
+
+.quick-booking h2 {
+    color: white;
+    margin-top: 0;
+    font-size: 30px;
+}
+
+.quick-booking p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.quick-booking strong {
+    color: #22ce28;
+}
+
+
+/* HOME CONTACT */
+
+.home-contact {
+    text-align: center;
+}
+
+.home-qr {
+    display: block;
+    width: 230px;
+    max-width: 75%;
+    height: auto;
+    margin: 0 auto 20px;
+}
+
+.home-contact p {
+    color: #333;
+    font-size: 16px;
+}
+
+
+/* =========================
+   COMMON PAGE HEADER
+   ========================= */
+
+.page-header {
+    text-align: center;
+    max-width: 900px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+.page-logo {
+    width: 300px;
+    max-width: 80%;
+    height: auto;
+    margin: 0 auto 10px;
+    display: block;
+}
+
+.page-header h1 {
+    margin: 12px 0 8px;
+    font-size: 40px;
+}
+
+.page-header p {
+    margin: 0;
+    font-size: 19px;
+    color: #123b5d;
+}
+
+
+/* =========================
+   RESERVATION PAGE
+   ========================= */
+
+.reservation-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+}
+
+.reservation-intro {
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto 45px;
+    padding: 30px;
+    background: #f5f5f5;
+    border-radius: 18px;
+    border: 2px solid #18815b;
+}
+
+.reservation-intro h2 {
+    margin-top: 0;
+    font-size: 30px;
+}
+
+.reservation-intro p {
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.contact-line {
+    margin-top: 22px !important;
+    color: #123b5d !important;
+    font-weight: bold;
+}
+
+.reservation-image-section {
+    margin: 40px auto;
+    text-align: center;
+}
+
+.reservation-image-section h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.reservation-image {
+    display: block;
+    width: 100%;
+    max-width: 1100px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 14px;
+}
+
+
+/* =========================
+   DOG SITTING PAGE
+   ========================= */
+
+.sitting-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+}
+
+.sitting-hero {
+    max-width: 850px;
+    margin: 0 auto 35px;
+    padding: 40px 30px;
+    text-align: center;
+    border-radius: 22px;
+    background: linear-gradient(135deg, #0c0321, #123b5d);
+    color: white;
+}
+
+.sitting-hero-icon {
+    font-size: 58px;
+    margin-bottom: 15px;
+}
+
+.sitting-hero h2 {
+    color: white;
+    font-size: 30px;
+    margin: 0 0 15px;
+}
+
+.sitting-hero p {
+    max-width: 700px;
+    margin: 12px auto;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+
+.sitting-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin: 35px 0;
+}
+
+.info-card {
+    padding: 28px 22px;
+    text-align: center;
+    background: #f5f5f5;
+    border: 2px solid #18815b;
+    border-radius: 18px;
+}
+
+.info-icon {
+    font-size: 42px;
+}
+
+.info-card h2 {
+    font-size: 22px;
+    margin: 12px 0;
+}
+
+.info-card p {
+    margin: 0;
+    line-height: 1.5;
+    color: #444;
+}
+
+
+.approval-box {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 28px;
+    border-radius: 18px;
+    background: #eef7f1;
+    border: 2px solid #18815b;
+}
+
+.approval-box h2 {
+    margin-top: 0;
+}
+
+.approval-box p {
+    line-height: 1.6;
+    color: #333;
+}
+
+
+.sitting-booking {
+    max-width: 850px;
+    margin: 45px auto 0;
+    padding: 30px;
+    border-radius: 20px;
+    background: #f5f5f5;
+    box-shadow: 0 5px 20px rgba(12, 3, 33, 0.10);
+}
+
+.sitting-booking > h2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 30px;
+}
+
+.sitting-booking > p {
+    text-align: center;
+    line-height: 1.5;
+    color: #444;
+}
+
+
+.sitting-form {
+    margin-top: 25px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 7px;
+    color: #123b5d;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #aaa;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: 2px solid #18815b;
+    border-color: #18815b;
+}
+
+
+.approval-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 22px 0;
+    font-weight: bold;
+    color: #123b5d;
+    line-height: 1.4;
+}
+
+.approval-check input {
+    margin-top: 3px;
+    transform: scale(1.15);
+}
+
+
+/* =========================
+   PREMIUM BOOK BUTTON
+   ========================= */
+
+.book-button {
+    display: inline-block;
+    text-decoration: none;
+    margin: 18px 5px;
+}
+
+.book-button button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-width: 230px;
+    padding: 15px 30px;
+    background: linear-gradient(
+        135deg,
+        #0c0321 0%,
+        #123b5d 45%,
+        #18815b 100%
+    );
+    color: white;
+    border: 2px solid #18815b;
+    border-radius: 50px;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow:
+        0 6px 15px rgba(12, 3, 33, 0.35),
+        0 0 0 0 rgba(24, 129, 91, 0.4);
+    transition: all 0.3s ease;
+}
+
+.book-button button:hover {
+    transform: translateY(-3px) scale(1.04);
+    background: linear-gradient(
+        135deg,
+        #123b5d 0%,
+        #18815b 60%,
+        #22ce28 100%
+    );
+    box-shadow:
+        0 10px 22px rgba(12, 3, 33, 0.4),
+        0 0 18px rgba(34, 206, 40, 0.35);
+}
+
+.book-button button:active {
+    transform: translateY(0) scale(0.97);
+}
+
+
+/* =========================
+   WHATSAPP
+   ========================= */
+
+.whatsapp-icon {
+    width: 27px !important;
+    height: 27px !important;
+    max-width: 27px !important;
+    margin: 0 !important;
+    display: block;
+}
+
+.whatsapp-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #25D366;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.2s;
+}
+
+.whatsapp-button:hover {
+    background: #1ebe5d;
+}
+
+
+/* =========================
+   EXISTING SHOP STYLES
+   ========================= */
+
+.shop {
+    text-align: center;
+    padding: 20px;
+}
+
+.products {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.product {
+    width: 280px;
+    padding: 20px;
+    border: 2px solid #123b5d;
+    border-radius: 15px;
+    background-color: #f5f5f5;
+}
+
+.product h2 {
+    color: #123b5d;
+}
+
+.product h3 {
+    color: #18815b;
+    font-size: 22px;
+}
+
+.product button,
+.order-button {
+    background-color: #123b5d;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.product button:hover,
+.order-button:hover {
+    background-color: #18815b;
+}
+
+.cart {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 25px;
+    border: 2px solid #18815b;
+    border-radius: 15px;
+    background-color: #f5f5f5;
+}
+
+.cart h2 {
+    color: #123b5d;
+}
+
+.cart input {
+    width: 90%;
+    padding: 12px;
+    margin: 8px;
+    border: 1px solid #999;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.cart p button {
+    margin-left: 10px;
+    background-color: #9b2c2c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media screen and (max-width: 800px) {
+
+    ul {
+        flex-direction: column;
+    }
+
+    ul li {
+        width: 100%;
+    }
+
+    ul li a {
+        width: 100%;
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .home-page,
+    .reservation-page,
+    .sitting-page {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .home-logo,
+    .page-logo {
+        width: 230px;
+        max-width: 75%;
+    }
+
+    .home-header h1,
+    .page-header h1 {
+        font-size: 31px;
+    }
+
+    .home-subtitle,
+    .page-header p {
+        font-size: 17px;
+        line-height: 1.4;
+    }
+
+    .service-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-top: 25px;
+    }
+
+    .service-card {
+        min-height: 245px;
+        padding: 28px 20px;
+    }
+
+    .service-icon {
+        font-size: 48px;
+    }
+
+    .service-card h2 {
+        font-size: 24px;
+    }
+
+    .about-section,
+    .reservation-intro,
+    .sitting-booking,
+    .approval-box {
+        padding: 22px 18px;
+    }
+
+    .quick-booking {
+        padding: 28px 18px;
+    }
+
+    .sitting-info-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .reservation-image {
+        max-width: 100%;
+    }
+
+    .book-button {
+        display: flex;
+        justify-content: center;
+        margin: 20px auto;
+    }
+
+    .book-button button {
+        min-width: 220px;
+        max-width: 100%;
+        padding: 14px 22px;
+        font-size: 17px;
+    }
+
+    .whatsapp-icon {
+        width: 25px !important;
+        height: 25px !important;
+        max-width: 25px !important;
+        margin: 0 !important;
+    }
+
+    .home-qr {
+        width: 200px;
+        max-width: 75%;
+    }
+}
+
+
+/* =========================
+   VERY SMALL PHONES
+   ========================= */
+
+@media screen and (max-width: 420px) {
+
+    .home-page,
+    .reservation-page,
+    .sitting-page {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .service-card {
+        min-height: 220px;
+    }
+
+    .service-card p {
+        font-size: 16px;
+    }
+
+    .sitting-hero {
+        padding: 30px 18px;
+    }
+
+    .sitting-hero h2 {
+        font-size: 25px;
+    }
+}
